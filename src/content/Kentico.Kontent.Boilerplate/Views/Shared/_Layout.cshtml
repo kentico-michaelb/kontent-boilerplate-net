@@ -28,6 +28,10 @@
 </head>
 
 <body>
+    <nav role="navigation">
+        @await Component.InvokeAsync("Navigation")
+    </nav>
+
     <div class="container">
         @RenderBody()
 

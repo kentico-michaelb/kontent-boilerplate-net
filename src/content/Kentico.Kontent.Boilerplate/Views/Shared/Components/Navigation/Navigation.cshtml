@@ -1,0 +1,20 @@
+﻿@using Kentico.Kontent.Boilerplate.Models;
+
+@model List<NavigationItem>;
+@{
+    Layout = null;
+}
+
+@foreach (NavigationItem item in Model)
+    {
+    <div>
+        @if (item.Parents.Count() == 0)
+        {
+            @Html.ActionLink(@item.Title, "Index", item.Url);
+
+            @Html.DisplayFor(vm => item, "NestedNavigation")
+
+        }
+    </div>
+    }
+

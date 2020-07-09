@@ -20,6 +20,7 @@ namespace Kentico.Kontent.Boilerplate.Models
             {typeof(HeroUnit), "hero_unit"},
             {typeof(Home), "home"},
             {typeof(HostedVideo), "hosted_video"},
+            {typeof(NavigationItem), "navigation_item"},
             {typeof(Office), "office"},
             {typeof(Tweet), "tweet"}
         };

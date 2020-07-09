@@ -36,6 +36,10 @@
     <Folder Include="Models\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="Views\Shared\Components\Navigation\Navigation.cshtml" />
+  </ItemGroup>
+
   <Target Name="GenerateModels" BeforeTargets="BeforeBuild;BeforeRebuild">
     <PropertyGroup>
       <PowerShellExe Condition=" '$(PowerShellExe)'=='' ">%WINDIR%\System32\WindowsPowerShell\v1.0\powershell.exe</PowerShellExe>

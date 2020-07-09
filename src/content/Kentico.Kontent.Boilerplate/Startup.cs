@@ -12,6 +12,7 @@ using Kentico.Kontent.Delivery.Caching.Extensions;
 using Kentico.Kontent.AspNetCore.Middleware.Webhook;
 using Kentico.Kontent.AspNetCore.ImageTransformation;
 using Kentico.Kontent.Delivery.Abstractions;
+using Kentico.Kontent.Boilerplate.Infrastructure;
 
 namespace Kentico.Kontent.Boilerplate
 {
@@ -36,6 +37,10 @@ namespace Kentico.Kontent.Boilerplate
             services.AddSingleton<ITypeProvider, CustomTypeProvider>();
             services.AddSingleton<IContentLinkUrlResolver, CustomContentLinkUrlResolver>();
             services.AddDeliveryClient(Configuration);
+
+            // Navigation
+            services.AddMemoryCache();
+            services.AddSingleton<NavigationProvider>();
 
             // Use cached client decorator
             services.AddDeliveryClientCache(new DeliveryCacheOptions()
@@ -75,9 +80,12 @@ namespace Kentico.Kontent.Boilerplate
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "areas",
-                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+                //endpoints.MapControllerRoute(
+                //    name: "areas",
+                //    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute(name: "dynamic",
+                    pattern: "{controller}/{**id}",
+                    defaults: new { controller = "Home", action = "Index" });
 
                 endpoints.MapControllerRoute(
                     name: "sitemap",
